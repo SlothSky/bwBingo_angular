@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { QuestionService } from './services/question.service';
+import { BuzzWordService } from './services/buzzWord.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { QuestionService } from './services/question.service';
     HttpClientModule,
   ],
   providers: [
-    QuestionService,
+    BuzzWordService,
   ],
   bootstrap: [AppComponent]
 })

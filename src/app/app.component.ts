@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-import { QuestionService } from './services/question.service';
-import Question from './models/question.model';
+import { BuzzWordService } from './services/buzzWord.service';
+import BuzzWord from './models/buzzWord.model';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +14,15 @@ export class AppComponent implements OnInit
 
   constructor(
     //Private questionService will be injected into the component by Angular Dependency Injector
-    private questionService: QuestionService
+    private buzzWordService: BuzzWordService
   ) { }
 
-  public title = 'quiz';
-  public levels: number[] = [1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20];
+  public title = 'buzzWordBingo';
+  public rows: number[] = [1,2,3,4,5,6,8,9,10];
+  public columns: number[] = [1,2,3,4,5,6,8,9,10];
 
   //An Empty list for the visible question list
-  questionList: Question[];
+  buzzWordList: BuzzWord[];
 
   ngOnInit(): void {
     this.getQuestions();
@@ -31,9 +31,9 @@ export class AppComponent implements OnInit
   getQuestions() 
   {
     //At component initialization the 
-    this.questionService.getQuestions().subscribe(questions => {
+    this.buzzWordService.getBuzzWords().subscribe(buzzWords => {
       //assign the todolist property to the proper http response
-      this.questionList = questions;
+      this.buzzWordList = buzzWords;
     })
   }
 
