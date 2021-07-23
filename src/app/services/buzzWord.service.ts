@@ -20,7 +20,6 @@ export class BuzzWordService
   //Create todo, takes a Question Object
   createBuzzWord(buzzWord: BuzzWord): Observable<any>
   {
-    console.log(buzzWord)
     //returns the observable of http post request 
     return this.http.post(`${this.buzzWordUrl}`, buzzWord);
   }

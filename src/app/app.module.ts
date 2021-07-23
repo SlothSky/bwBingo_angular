@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { BuzzWordService } from './services/buzzWord.service';
+import { RandomService } from './services/random.service';
 
 @NgModule({
   declarations: [
@@ -11,10 +12,11 @@ import { BuzzWordService } from './services/buzzWord.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
-    BuzzWordService,
+    RandomService,
+    BuzzWordService
   ],
   bootstrap: [AppComponent]
 })

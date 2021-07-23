@@ -1,5 +1,10 @@
 <body style="margin:0;">
   <div style="display: flex;justify-content: center;flex-wrap: nowrap;">
-    <i>Tesst</i>
+    <ul *ngFor="let buzzWord of buzzWordList"> 
+      <li>{{ buzzWord.name }}</li> 
+    </ul>
+  </div>
+  <div>
+    <b>NEW NUMBER IS: {{ randomNumber }}</b>
   </div>
 </body>
