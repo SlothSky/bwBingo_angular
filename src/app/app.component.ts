@@ -25,16 +25,29 @@ export class AppComponent implements OnInit
   buzzWordList: BuzzWord[];
 
   ngOnInit(): void {
-    this.getQuestions();
+      this.getQuestions(); 
+      this.createQuestion()
   }
 
   getQuestions() 
   {
     //At component initialization the 
     this.buzzWordService.getBuzzWords().subscribe(buzzWords => {
+      console.log(buzzWords)
       //assign the todolist property to the proper http response
       this.buzzWordList = buzzWords;
     })
+  }
+
+  createQuestion()
+  {
+    let newBW = new BuzzWord("IoT", "Internet of Crap", 1);
+
+    this.buzzWordService.createBuzzWord(newBW).subscribe(buzzWords => {
+      console.log(buzzWords)
+      //assign the todolist property to the proper http response
+      this.buzzWordList = buzzWords;
+    });
   }
 
   loadQuestion(level: number)

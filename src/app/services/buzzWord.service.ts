@@ -11,7 +11,7 @@ export class BuzzWordService
 {
 
   api_url = 'http://localhost:3000';
-  buzzWordUrl = `${this.api_url}/api/buzzWordBingo`;
+  buzzWordUrl = `${this.api_url}/api/buzzWord`;
 
   constructor(
     private http: HttpClient
@@ -20,6 +20,7 @@ export class BuzzWordService
   //Create todo, takes a Question Object
   createBuzzWord(buzzWord: BuzzWord): Observable<any>
   {
+    console.log(buzzWord)
     //returns the observable of http post request 
     return this.http.post(`${this.buzzWordUrl}`, buzzWord);
   }
