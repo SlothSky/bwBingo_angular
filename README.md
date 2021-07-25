@@ -1,6 +1,6 @@
 # Buzz Word Bingo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
 
 ## Development server
 
@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running lint check
 
-Run `npm run lint` to execute the lint check via [ESLintt](https://eslint.org/).
+Run `npm run lint` to execute the lint check via [ESLint](https://eslint.org/).
 
 ## Running unit tests
 
