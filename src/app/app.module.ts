@@ -7,17 +7,17 @@ import { BuzzWordService } from './services/buzzWord.service';
 import { RandomService } from './services/random.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
-  providers: [
-    RandomService,
-    BuzzWordService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule
+    ],
+    providers: [
+        RandomService,
+        BuzzWordService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

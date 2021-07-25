@@ -263,7 +263,6 @@ module.exports = {
             "error",
             "as-needed"
         ],
-        "quotes": "error",
         "radix": "error",
         "semi": "error",
         "space-before-function-paren": [

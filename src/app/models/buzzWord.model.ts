@@ -1,15 +1,15 @@
 class BuzzWord {
-    _id:string;
+    _id: string;
     name: string;
     description: string;
-    mdb_id: number;
+    mdbId: number;
 
-    constructor(p_name: string, p_description: string, p_mdb: number,)
+    constructor(pName: string, pDescription: string, pMdb: number,)
     {
-        //TODO include data type check
-        this.name = p_name
-        this.description = p_description
-        this.mdb_id = p_mdb
+        // TODO include data type check
+        this.name = pName;
+        this.description = pDescription;
+        this.mdbId = pMdb;
     }
 }
 
