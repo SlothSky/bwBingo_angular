@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "quiz": {
+    "buzzWordBingo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/quiz",
+            "outputPath": "dist/buzzWordBingo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "quiz:build"
+            "browserTarget": "buzzWordBingo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "quiz:build:production"
+              "browserTarget": "buzzWordBingo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quiz:build"
+            "browserTarget": "buzzWordBingo:build"
           }
         },
         "test": {
@@ -116,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "quiz:serve"
+            "devServerTarget": "buzzWordBingo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "quiz:serve:production"
+              "devServerTarget": "buzzWordBingo:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "quiz",
+  "defaultProject": "buzzWordBingo",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
