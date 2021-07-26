@@ -44,6 +44,7 @@ jobs:
             # npm init --yes is required for the creation of the package.json
             npm init --yes
             npm install
+            npm install @typescript-eslint/eslint-plugin@latest --save-dev
       - run:
           name: Perform ESLint
           command: |
