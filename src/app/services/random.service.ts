@@ -9,9 +9,7 @@ export class RandomService
 
     public randomApiUrl = 'http://www.randomnumberapi.com/api/v1.0/random?';
 
-    constructor(
-        private http: HttpClient
-    ) { }
+    constructor() { }
 
     // Read question, takes no arguments
     getRandomNumber(maxValue: number): Observable<number>
@@ -19,6 +17,8 @@ export class RandomService
         const O_RANDOM_NUMBER = new Observable<number>((observer) => {
             const CALC_NUMBER = Math.floor(Math.random() * maxValue);
 
+            observer.next(CALC_NUMBER);
+            observer.complete();
         });
 
         return O_RANDOM_NUMBER;

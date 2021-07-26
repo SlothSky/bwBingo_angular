@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BuzzWordService } from './services/buzzWord.service';
 import { RandomService } from './services/random.service';
 import BuzzWord from './models/buzzWord.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit
     public columns: number[] = [1,2,3,4,5,6,8,9,10];
 
     // Random Number generated with the random number service
-    public randomNumber;
+    public randomNumber: number;
+    public randomNumberAsserter: Boolean = false;
 
     // An Empty list for the visible question list
     public buzzWordList: BuzzWord[] = [];
@@ -32,25 +34,50 @@ export class AppComponent implements OnInit
 
 
     ngOnInit(): void {
-        this.getQuestions();
-        this.getNumber();
+        this.getBuzzWords();
     }
 
-    getQuestions(): void
+    /* getBuzzWords(): void
+     * description → retrieve currently stored buzz words via the buzz word service 
+     * onError → log error & set random number to error value "-1"
+     * onCompletion → unsubscribe and call the getNumber method 
+    */
+    getBuzzWords(): void 
     {
-        // at component initialization the
-        this.buzzWordService.getBuzzWords().subscribe(buzzWords => {
-            console.log(buzzWords);
-            // assign the todolist property to the proper http response
-            this.buzzWordList = buzzWords;
-        });
+        this.buzzWordService.getBuzzWords().subscribe(
+            (data: BuzzWord[]) => {
+                this.buzzWordList = data;
+            },
+            (errorData: HttpErrorResponse) => {
+                console.log("Something went definitely wrong here: " + errorData.status.toString() 
+                    + " - " + errorData.statusText + " for URL call: " + errorData.url);
+                this.randomNumber = -1;
+            },
+            () => {
+                this.getRandomNumber(this.buzzWordList.length);
+            });
     }
 
-    getNumber(): void
+    /* getRandomNumber(maxValue: number): void
+     * description → retrieve a calculated random number via the random service
+     * parameter_0 (maxValue: number) → the maximum value threshold for the calculation of the random number 
+     * onError → log error & set random number to error value "-1"
+     * onCompletion → unsubscribe and set randomNumberAsserter to true
+    */
+    getRandomNumber(maxValue: number): void
     {
-        this.randomService.getRandomNumber(this.buzzWordList.length).subscribe(oRandom => {
-            console.log(this.buzzWordList.length.toString() + ' ' + oRandom.toString());
-        });
+        let check = this.randomService.getRandomNumber(maxValue).subscribe(
+            (oRandom: number) => {
+                this.randomNumber = oRandom;
+            },
+            () => {
+                console.log("Was not available to retrieve number for this input value. Will not set randomNumber to -1")
+                this.randomNumber = -1;
+            },
+            () => {
+                this.randomNumberAsserter = true;
+            }
+        );
     }
 
     createQuestion(): void

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable arrow-body-style */
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -31,11 +31,18 @@ export class BuzzWordService
     // Read question, takes no arguments
     getBuzzWords(): Observable<BuzzWord[]>
     {
-        return this.http.get(this.buzzWordUrl)
-            .pipe(map(res  => {
+        /* If received value from http get is not a 
+         * Response, this will be catched in subscription
+        */
+        return this.http.get<Response>(this.buzzWordUrl)
+            .pipe(map((response: Response)  => {
+                if (response['data'].total > 0)
+                {
+                    let bwList: BuzzWord[] = response['data'].docs;
 
-                // Maps the response object sent from the server
-                return res['data'].docs as BuzzWord[];
+                    // Maps the response object sent from the server
+                    return bwList;
+                }
             }));
     }
 
