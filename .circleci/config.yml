@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Perform ESLint
           command: |
-            npx eslint \"./src/**/*.ts\" -c .eslintrc.js
+            npx eslint -c .eslintrc.js
 
 workflows:
    version: 2
