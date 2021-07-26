@@ -35,6 +35,13 @@ module.exports = {
         "eslint-plugin-prefer-arrow",
         "@typescript-eslint"
     ],
+    "ignorePatterns": [
+        "src/*.js", 
+        "e2e/**/*.js",
+        "e2e/*.*.js", 
+        "e2e/**/*.ts", 
+        "*.js"
+    ],
     "rules": {
         "@angular-eslint/component-class-suffix": "error",
         "@angular-eslint/component-selector": [
@@ -67,6 +74,11 @@ module.exports = {
         "@angular-eslint/use-pipe-transform-interface": "error",
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/ban-types": [
             "error",
             {
