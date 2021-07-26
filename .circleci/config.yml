@@ -31,6 +31,18 @@ jobs:
           command: |
             node -v
             echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
+  
+  lint: 
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run: 
+          name: Install NPM dependencies
+          command: npm install
+      - run:
+          name: Perform ESLint
+          command: npm run lint
 
 workflows:
    version: 2
