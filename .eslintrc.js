@@ -35,6 +35,13 @@ module.exports = {
         "eslint-plugin-prefer-arrow",
         "@typescript-eslint"
     ],
+    "ignorePatterns": [
+        "src/*.js", 
+        "e2e/**/*.js",
+        "e2e/*.*.js", 
+        "e2e/**/*.ts", 
+        "*.js"
+    ],
     "rules": {
         "@angular-eslint/component-class-suffix": "error",
         "@angular-eslint/component-selector": [
