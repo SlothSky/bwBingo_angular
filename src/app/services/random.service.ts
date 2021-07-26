@@ -15,9 +15,18 @@ export class RandomService
     getRandomNumber(maxValue: number): Observable<number>
     {
         const O_RANDOM_NUMBER = new Observable<number>((observer) => {
-            const CALC_NUMBER = Math.floor(Math.random() * maxValue);
+            let calcNumber = Math.random() * maxValue;
 
-            observer.next(CALC_NUMBER);
+            // the following conditions is required, because Math.random return double between 0.0 & 1.0
+            if (calcNumber >= 0.5)
+            {
+                calcNumber = Math.floor(calcNumber + 1);
+                observer.next(calcNumber);
+            }
+            else
+            {
+                observer.next(Math.floor(calcNumber));
+            }
             observer.complete();
         });
 
