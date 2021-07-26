@@ -22,3 +22,17 @@ jobs:
           command: |
             node -v
             echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
+
+workflows:
+   version: 2
+   nightly:
+     triggers:
+       - schedule:
+         cron: "0 0 * * *"
+         filters:
+           branches:
+             only:
+               - master
+               - develop
+   jobs:
+     - build
