@@ -48,6 +48,7 @@ jobs:
             npm install eslint-plugin-import@latest --save-dev
             npm install @angular-eslint/eslint-plugin@latest --save-dev
             npm install eslint-plugin-jsdoc@latest --save-dev
+            npm install @angular-eslint/eslint-plugin-template@latest --save-dev
       - run:
           name: Perform ESLint
           command: |
