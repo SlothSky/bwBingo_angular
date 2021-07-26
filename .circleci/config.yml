@@ -46,7 +46,9 @@ jobs:
             npm install
       - run:
           name: Perform ESLint
-          command: npm run lint > lint.log
+          command: |
+            ls -larth
+            # npm run lint > lint.log
 
 workflows:
    version: 2
