@@ -39,9 +39,10 @@ workflows:
        - build_dev:
            filters:
              branches:
-               only:
-                 - feature\/([a-zA-Z0-9]+)
-                 - bugfix\/([a-zA-Z0-9]+)
+               ignore:
+                 - master
+                 - develop
+                 - release
    nightly:
      triggers:
        - schedule:
