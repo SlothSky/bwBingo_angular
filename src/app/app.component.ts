@@ -20,7 +20,7 @@ export class AppComponent implements OnInit
 
     // Random Number generated with the random number service
     public randomNumber: number;
-    public randomNumberAsserter: Boolean = false;
+    public randomNumberAsserter = false;
 
     // An Empty list for the visible question list
     public buzzWordList: BuzzWord[] = [];
@@ -38,19 +38,19 @@ export class AppComponent implements OnInit
     }
 
     /* getBuzzWords(): void
-     * description → retrieve currently stored buzz words via the buzz word service 
+     * description → retrieve currently stored buzz words via the buzz word service
      * onError → log error & set random number to error value "-1"
-     * onCompletion → unsubscribe and call the getNumber method 
+     * onCompletion → unsubscribe and call the getNumber method
     */
-    getBuzzWords(): void 
+    getBuzzWords(): void
     {
         this.buzzWordService.getBuzzWords().subscribe(
             (data: BuzzWord[]) => {
                 this.buzzWordList = data;
             },
             (errorData: HttpErrorResponse) => {
-                console.log("Something went definitely wrong here: " + errorData.status.toString() 
-                    + " - " + errorData.statusText + " for URL call: " + errorData.url);
+                console.log('Something went definitely wrong here: ' + errorData.status.toString()
+                    + ' - ' + errorData.statusText + ' for URL call: ' + errorData.url);
                 this.randomNumber = -1;
             },
             () => {
@@ -60,18 +60,18 @@ export class AppComponent implements OnInit
 
     /* getRandomNumber(maxValue: number): void
      * description → retrieve a calculated random number via the random service
-     * parameter_0 (maxValue: number) → the maximum value threshold for the calculation of the random number 
+     * parameter_0 (maxValue: number) → the maximum value threshold for the calculation of the random number
      * onError → log error & set random number to error value "-1"
      * onCompletion → unsubscribe and set randomNumberAsserter to true
     */
     getRandomNumber(maxValue: number): void
     {
-        let check = this.randomService.getRandomNumber(maxValue).subscribe(
+        this.randomService.getRandomNumber(maxValue).subscribe(
             (oRandom: number) => {
                 this.randomNumber = oRandom;
             },
             () => {
-                console.log("Was not available to retrieve number for this input value. Will not set randomNumber to -1")
+                console.log('Was not available to retrieve number for this input value. Will not set randomNumber to -1');
                 this.randomNumber = -1;
             },
             () => {
