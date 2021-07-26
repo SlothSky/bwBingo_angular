@@ -6,8 +6,14 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - checkout
       - run:
           name: Setup CI
           command: |
             echo 'Hello Visitor'
             echo 'CI setup started!'
+      - run:
+          name: SCM
+          command: |
+            ls -latrh
+            echo '^^^ CODE CHECKED OUT SUCCESSFULLY ^^^'
