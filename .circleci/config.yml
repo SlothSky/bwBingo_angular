@@ -21,3 +21,4 @@ jobs:
           name: Setup NODE
           command: |
             node -v
+            echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
