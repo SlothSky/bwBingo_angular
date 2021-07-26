@@ -47,8 +47,7 @@ jobs:
       - run:
           name: Perform ESLint
           command: |
-            ls -larth
-            # npm run lint > lint.log
+            npx eslint \"./src/**/*.ts\" -c .eslintrc.js
 
 workflows:
    version: 2
