@@ -40,8 +40,8 @@ workflows:
            filters:
              branches:
                only:
-                 - /feature\/*/
-                 - /bugfix\/*/
+                 - feature\/([a-zA-Z0-9]+)
+                 - bugfix\/([a-zA-Z0-9]+)
    nightly:
      triggers:
        - schedule:
