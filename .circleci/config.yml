@@ -10,7 +10,8 @@ jobs:
       - run:
           name: DEV BUILD START
           command: | 
-            echo 'Non skip build to feature / bugfix triggered build'
+            ls -latrh
+
   build:
     docker:
       - image: node:latest
@@ -42,19 +43,24 @@ jobs:
           command: npm install
       - run:
           name: Perform ESLint
-          command: npm run lint
+          command: npm run lint > lint.log
 
 workflows:
    version: 2
    dev_stage:
      jobs:
+       - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                - release
        - build_dev:
-           filters:
-             branches:
-               ignore:
-                 - master
-                 - develop
-                 - release
+          requires:
+            - lint
+           
+
    nightly:
      triggers:
        - schedule:
