@@ -2,6 +2,15 @@
 version: 2.1
 
 jobs:
+  build_dev:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: DEV BUILD START
+          command: | 
+            echo 'Non skip build to feature / bugfix triggered build'
   build:
     docker:
       - image: node:latest
@@ -22,3 +31,26 @@ jobs:
           command: |
             node -v
             echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
+
+workflows:
+   version: 2
+   dev_stage:
+     jobs:
+       - build_dev:
+           filters:
+             branches:
+               ignore:
+                 - master
+                 - develop
+                 - release
+   nightly:
+     triggers:
+       - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+                 - develop
+     jobs:
+       - build
