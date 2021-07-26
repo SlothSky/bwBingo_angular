@@ -1,0 +1,24 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: Setup CI
+          command: |
+            echo 'Hello Visitor'
+            echo 'CI setup started!'
+      - run:
+          name: SCM
+          command: |
+            ls -latrh
+            echo '^^^ CODE CHECKED OUT SUCCESSFULLY ^^^'
+      - run:
+          name: Setup NODE
+          command: |
+            node -v
+            echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
