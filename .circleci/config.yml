@@ -40,7 +40,10 @@ jobs:
       - checkout
       - run: 
           name: Install NPM dependencies
-          command: npm install
+          command: |
+            # npm init --yes is required for the creation of the package.json
+            npm init --yes
+            npm install
       - run:
           name: Perform ESLint
           command: npm run lint > lint.log
