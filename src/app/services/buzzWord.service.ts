@@ -14,7 +14,7 @@ import BuzzWord from '../models/buzzWord.model';
 export class BuzzWordService
 {
 
-    apiUrl = 'http://CBUG00877:3000';
+    apiUrl = 'http://localhost:3000';
     buzzWordUrl = `${this.apiUrl}/api/buzzWord`;
 
     constructor(
