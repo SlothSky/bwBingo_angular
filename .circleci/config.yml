@@ -10,7 +10,8 @@ jobs:
       - run:
           name: DEV BUILD START
           command: | 
-            echo 'Non skip build to feature / bugfix triggered build'
+            ls -latrh
+
   build:
     docker:
       - image: node:latest
@@ -31,18 +32,45 @@ jobs:
           command: |
             node -v
             echo '### NODE VERSTION RETRIEVED SUCCESSFULLY ###'
+  
+  lint: 
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run: 
+          name: Install NPM dependencies
+          command: |
+            # npm init --yes is required for the creation of the package.json
+            npm init --yes
+            # following additional installtions are only required for the linting
+            npm install @typescript-eslint/eslint-plugin@latest --save-dev
+            npm install eslint-plugin-import@latest --save-dev
+            npm install @angular-eslint/eslint-plugin@latest --save-dev
+            npm install eslint-plugin-jsdoc@latest --save-dev
+            npm install @angular-eslint/eslint-plugin-template@latest --save-dev
+            npm install eslint-plugin-prefer-arrow@latest --save-dev
+      - run:
+          name: Perform ESLint
+          command: |
+            npx eslint . -c .eslintrc.js
 
 workflows:
    version: 2
    dev_stage:
      jobs:
+       - lint:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                - release
        - build_dev:
-           filters:
-             branches:
-               ignore:
-                 - master
-                 - develop
-                 - release
+          requires:
+            - lint
+           
+
    nightly:
      triggers:
        - schedule:
