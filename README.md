@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Development server
 
-RSlothSky `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ### CI SlothSky
 The CI Server for this project can be found here: [CircleCI](https://app.circleci.com/pipelines/github/SlothSky/bwBingo_angular?branch=develop)
