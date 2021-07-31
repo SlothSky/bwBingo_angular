@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap-grid.min.css';
+
+html, body{
+    overflow-y: hidden;
+    margin:0;
+}
+
+@font-face {
+    font-family: "Josefin_Sans";
+    src: local("Josefin_Sans"), url(./assets/fonts/JosefinSans-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Josefin_Sans_Italic";
+    src: local("Josefin_Sans_Italic"), url(./assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf) format("truetype");
+}

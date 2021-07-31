@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "12.1.2",
     "@angular/router": "12.1.2",
     "ajv": "^6.12.6",
+    "bootstrap": "latest",
     "rxjs": "latest",
     "tslib": "^1.14.1",
     "zone.js": "~0.11.4"

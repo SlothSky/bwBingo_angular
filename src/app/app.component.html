@@ -1,10 +1,20 @@
-<body style="margin:0;">
-  <div style="display: flex;justify-content: center;flex-wrap: nowrap;">
-    <ul *ngFor="let buzzWord of buzzWordList"> 
-      <li>{{ buzzWord.name }}</li> 
-    </ul>
-  </div>
-  <div>
-    <b>NEW NUMBER IS: {{ randomNumber }}</b>
+<body id="appBody">
+  <nav id="navigationBar">
+    {{ title }}
+  </nav>
+  <div class="container" style="margin:0">
+    <div class="row" style="width: 99vw; height: 95vh;">
+      <div class="col-lg-8 col-md-12" id="videoContainer">
+        <video id="customVideo" controls>
+          <source src="../assets/snipptes/up_and_away.mp4"  type="video/mp4">
+          This browser unfortunately does not support this video
+        </video>  
+      </div>
+      <div class="col-4" id="listContainer">
+        <ul *ngFor="let buzzWord of buzzWordList"> 
+          <li>{{ buzzWord.name }}</li> 
+        </ul>
+      </div>
+    </div>
   </div>
 </body>
