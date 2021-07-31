@@ -1,9 +1,10 @@
+/* eslint-disable quote-props */
 /* eslint-disable dot-notation */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable arrow-body-style */
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -24,7 +25,6 @@ export class BuzzWordService
     // Create todo, takes a Question Object
     createBuzzWord(buzzWord: BuzzWord): Observable<any>
     {
-        // returns the observable of http post request
         return this.http.post(`${this.buzzWordUrl}`, buzzWord);
     }
 
