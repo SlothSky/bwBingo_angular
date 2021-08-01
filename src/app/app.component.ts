@@ -82,7 +82,7 @@ export class AppComponent implements OnInit
 
     createQuestion(): void
     {
-        const newBW = new BuzzWord('IoT', 'Internet of Crap', 1);
+        const newBW = new BuzzWord('IoT', 'Internet of Crap', 1, '../assets/');
 
         this.buzzWordService.createBuzzWord(newBW).subscribe(buzzWords => {
             console.log(buzzWords);
