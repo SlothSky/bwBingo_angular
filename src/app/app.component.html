@@ -1,6 +1,6 @@
 <body id="appBody">
   <nav id="navigationBar">
-    {{ title }}
+    <h1>{{ title }}</h1>
   </nav>
   <div class="container" style="margin:0">
     <div class="row" style="width: 99vw; height: 95vh;">
@@ -10,10 +10,15 @@
           This browser unfortunately does not support this video
         </video>  
       </div>
-      <div class="col-4" id="listContainer">
-        <ul *ngFor="let buzzWord of buzzWordList"> 
-          <li>{{ buzzWord.name }}</li> 
-        </ul>
+      <div class="col-4" id="listArea">
+        <h2>Bereits gezogene Buzz Wörter:</h2>
+        <div id="listContainer">
+          <ul style="list-style-type:none; padding: 0 2vw;"> 
+            <li *ngFor="let buzzWord of buzzWordList" style="margin-bottom: 2vh; background-color: blanchedalmond;">
+              {{ buzzWord.name }}
+            </li> 
+          </ul>
+        </div>
       </div>
     </div>
   </div>

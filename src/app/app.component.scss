@@ -52,6 +52,20 @@ $large: 1300px;
     display: block;
 }
 
-#listContainer {
+#listArea {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     font-family: 'Josefin_Sans';
+    margin-top: 3vh;
+    margin-bottom: 5vh;
+    margin-right: 0;
+    background-color: rgb(158, 248, 203);
+}
+
+#listContainer {
+    width: 90%; 
+    height: 87%;
+    border-top: 2px solid steelblue;
+    border-bottom: 2px solid steelblue;
 }
