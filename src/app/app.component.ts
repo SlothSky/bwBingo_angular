@@ -44,18 +44,19 @@ export class AppComponent implements OnInit
     */
     getBuzzWords(): void
     {
-        this.buzzWordService.getBuzzWords().subscribe(
-            (data: BuzzWord[]) => {
+        this.buzzWordService.getBuzzWords().subscribe({
+            next: (data: BuzzWord[]) => {
                 this.buzzWordList = data;
             },
-            (errorData: HttpErrorResponse) => {
+            error: (errorData: HttpErrorResponse) => {
                 console.log('Something went definitely wrong here: ' + errorData.status.toString()
                     + ' - ' + errorData.statusText + ' for URL call: ' + errorData.url);
                 this.randomNumber = -1;
             },
-            () => {
+            complete: () => {
                 this.getRandomNumber(this.buzzWordList.length);
-            });
+            }
+        });
     }
 
     /* getRandomNumber(maxValue: number): void
@@ -66,18 +67,18 @@ export class AppComponent implements OnInit
     */
     getRandomNumber(maxValue: number): void
     {
-        this.randomService.getRandomNumber(maxValue).subscribe(
-            (oRandom: number) => {
+        this.randomService.getRandomNumber(maxValue).subscribe({
+            next: (oRandom: number) => {
                 this.randomNumber = oRandom;
             },
-            () => {
+            error: () => {
                 console.log('Was not available to retrieve number for this input value. Will not set randomNumber to -1');
                 this.randomNumber = -1;
             },
-            () => {
+            complete: () => {
                 this.randomNumberAsserter = true;
             }
-        );
+        });
     }
 
     createQuestion(): void
