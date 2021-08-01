@@ -13,9 +13,10 @@
       <div class="col-4" id="listArea">
         <h2>Bereits gezogene Buzz Wörter:</h2>
         <div id="listContainer">
-          <ul style="list-style-type:none; padding: 0 2vw;"> 
-            <li *ngFor="let buzzWord of buzzWordList" style="margin-bottom: 2vh; background-color: blanchedalmond;">
-              {{ buzzWord.name }}
+          <ul id="elementList"> 
+            <li *ngFor="let buzzWord of buzzWordList" class="listElement">
+              <h3>{{ buzzWord.name }}</h3>
+              <p>{{ buzzWord.description }}</p>
             </li> 
           </ul>
         </div>

@@ -61,11 +61,25 @@ $large: 1300px;
     margin-bottom: 5vh;
     margin-right: 0;
     background-color: rgb(158, 248, 203);
+    height: 87vh;
 }
 
 #listContainer {
     width: 90%; 
-    height: 87%;
     border-top: 2px solid steelblue;
     border-bottom: 2px solid steelblue;
+}
+
+#elementList {
+    overflow-y: scroll;
+    color: seashell;
+    list-style-type:none; 
+    padding: 0 2vw;
+    height: 70vh;
+}
+
+.listElement {
+    margin-bottom: 2vh;
+    padding: 0.1vh 1vw; 
+    background-color: rgb(49, 104, 77);
 }
