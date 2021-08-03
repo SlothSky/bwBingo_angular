@@ -24,7 +24,7 @@ export class AppComponent implements OnInit
 
     // An Empty list for the visible question list
     public buzzWordList: BuzzWord[] = [];
-
+    public currentBuzzWord: BuzzWord;
 
     constructor(
         // Private questionService will be injected into the component by Angular Dependency Injector
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit
 
 
     ngOnInit(): void {
-        this.getBuzzWords();
+        this.getBuzzWords('');
     }
 
     /* getBuzzWords(): void
@@ -42,11 +42,25 @@ export class AppComponent implements OnInit
      * onError → log error & set random number to error value "-1"
      * onCompletion → unsubscribe and call the getNumber method
     */
-    getBuzzWords(): void
+    getBuzzWords(query: string): void
     {
-        this.buzzWordService.getBuzzWords().subscribe({
+        this.buzzWordService.getBuzzWords(query).subscribe({
             next: (data: BuzzWord[]) => {
-                this.buzzWordList = data;
+                if (query !== '')
+                {
+                    if (data[0])
+                    {
+                        this.currentBuzzWord = data[0];
+                    }
+                    else
+                    {
+                        console.log('ERROR: No current buzz word was returned!');
+                    }
+                }
+                else
+                {
+                    this.buzzWordList = data;
+                }
             },
             error: (errorData: HttpErrorResponse) => {
                 console.log('Something went definitely wrong here: ' + errorData.status.toString()
@@ -54,7 +68,10 @@ export class AppComponent implements OnInit
                 this.randomNumber = -1;
             },
             complete: () => {
-                this.getRandomNumber(this.buzzWordList.length);
+                if (query === '')
+                {
+                    this.getRandomNumber(this.buzzWordList.length);
+                }
             }
         });
     }
@@ -69,10 +86,10 @@ export class AppComponent implements OnInit
     {
         this.randomService.getRandomNumber(maxValue).subscribe({
             next: (oRandom: number) => {
-                this.randomNumber = oRandom;
+                this.getBuzzWords(oRandom.toString());
             },
             error: () => {
-                console.log('Was not available to retrieve number for this input value. Will not set randomNumber to -1');
+                // console.log('Was not available to retrieve number for this input value. Will not set randomNumber to -1');
                 this.randomNumber = -1;
             },
             complete: () => {
@@ -86,7 +103,6 @@ export class AppComponent implements OnInit
         const newBW = new BuzzWord('IoT', 'Internet of Crap', 1, '../assets/');
 
         this.buzzWordService.createBuzzWord(newBW).subscribe(buzzWords => {
-            console.log(buzzWords);
             // assign the todolist property to the proper http response
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             this.buzzWordList = buzzWords;

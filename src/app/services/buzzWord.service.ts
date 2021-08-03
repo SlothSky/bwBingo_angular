@@ -29,22 +29,39 @@ export class BuzzWordService
     }
 
     // Read question, takes no arguments
-    getBuzzWords(): Observable<BuzzWord[]>
+    getBuzzWords(query: string): Observable<BuzzWord[]>
     {
-        /* If received value from http get is not a
-         * Response, this will be catched in subscription
-        */
-        return this.http.get<Response>(this.buzzWordUrl)
-            .pipe(map((response: Response)  => {
-                if (response['data'].total > 0)
-                {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    const BW_LIST: BuzzWord[] = response['data'].docs;
+        if (query !== '')
+        {
+            return this.http.get<Response>(this.buzzWordUrl+'?mdbId='+query)
+                .pipe(map((response: Response)  => {
+                    if (response['data'].total > 0)
+                    {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        const BW_LIST: BuzzWord[] = response['data'].docs;
 
-                    // Maps the response object sent from the server
-                    return BW_LIST;
-                }
-            }));
+                        // Maps the response object sent from the server
+                        return BW_LIST;
+                    }
+                }));
+        }
+        else
+        {
+            /* If received value from http get is not a
+            * Response, this will be catched in subscription
+            */
+            return this.http.get<Response>(this.buzzWordUrl)
+                .pipe(map((response: Response)  => {
+                    if (response['data'].total > 0)
+                    {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        const BW_LIST: BuzzWord[] = response['data'].docs;
+
+                        // Maps the response object sent from the server
+                        return BW_LIST;
+                    }
+                }));
+        }
     }
 
     // Update question, takes a Question Object as parameter
